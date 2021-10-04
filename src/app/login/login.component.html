@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="col">
+  </div>
+  <div class="col">
+    <div>
+      <h2> Welcome to ICIN Digital Bank</h2>
+      <h3>       Best Digital Experince</h3>
+      <br> <br>
+      <h5>Login</h5>
+        User Name: <input type="text" name="username" [(ngModel)]="username">
+        Password: <input type="password"  [(ngModel)]="password">
+      <button (click)=handleLogin() class="btn btn-success"> Login</button>
+    </div>
+  </div>
+</div>
+
+<div class ="container">
+  <div class="alert-warning" *ngIf="!isValidLogin">{{errorMessage}}</div>
+</div>

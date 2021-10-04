@@ -1,0 +1,26 @@
+<h4> Account Details of Account: [{{accountNumber}}]</h4>
+<div class="container">
+<table class="table">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Transaction Date</th>
+        <th>Description</th>
+        <th>Credit/Debit</th>
+        <th>Amount</th>
+        <th>Balance</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let acct of accountDetails">
+        <td>{{acct.id}}</td>
+        <td>{{acct.transactionDate |date}}</td>
+        <td>{{acct.activity}}</td>
+        <td> {{acct.isCredit ? 'Debit':'Credit'}}</td>
+        <td>{{acct.amount}}</td>
+        <td>{{acct.balance}}</td>
+      </tr>
+    </tbody>
+</table>
+</div>
+

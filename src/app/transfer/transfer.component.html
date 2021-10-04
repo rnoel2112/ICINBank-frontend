@@ -1,0 +1,49 @@
+
+<div class="container">
+  <h6>
+  Account Number :{{accountNumber}}
+  Balance:{{accountBalance}}
+</h6>
+
+
+<div class="container">
+
+  <div class="alert alert-warning" *ngIf="depform.dirty && depform.invalid">Enter valid values</div>
+  <div class="alert alert-warning" *ngIf="depform.dirty && amt.invalid && amt.value < 1 "> Enter Valid Amount</div>
+  <div class="alert alert-warning" *ngIf="depform.dirty && rea.invalid">Enter Valid Reason of 5 char</div>
+
+
+  <form (ngSubmit)="!depform.invalid && handleTransfer()" #depform="ngForm">
+
+    <fieldset class="form-group">
+      <label> Benefactory Name</label>
+      <input type="text" class="form-control" name="Benefactory Name" #name="ngModel"
+      [(ngModel)]="transferUserName" required="required" minlength="4">
+    </fieldset>
+
+    <fieldset class="form-group">
+      <label>Benefactory Account Number</label>
+      <input type="text" class="form-control" name="Benefactory Account Number" #acct="ngModel"
+      [(ngModel)]="accountNoToTransfer" required="required" minlength="4">
+    </fieldset>
+
+    <fieldset class="form-group">
+      <label>Transfer Amount</label>
+      <input type="number" class="form-control" name="Deposit Amount" #amt="ngModel"
+      [(ngModel)]="transferAmount" required="required" minlength="1">
+    </fieldset>
+
+    <fieldset class="form-group">
+      <label>Transfer Reason</label>
+      <input type="text" class="form-control" name="Depsoit Reason" #rea="ngModel"
+      [(ngModel)]="transferReason" require="required"  minlength="5">
+    </fieldset>
+
+    <button type="submit" class="btn btn-success">Transfer</button>
+    <button (click)=handleCancel() class="btn btn-warning ">Cancel</button>
+
+  </form>
+
+
+</div>
+

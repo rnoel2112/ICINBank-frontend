@@ -1,0 +1,36 @@
+
+<div class="container">
+<h6>
+Account Number :{{accountNumber}}
+Balance:{{accountBalance}}
+</h6>
+
+</div>
+
+<div class="container">
+
+<div class="alert alert-warning" *ngIf="depform.dirty && depform.invalid">Enter valid values</div>
+<div class="alert alert-warning" *ngIf="depform.dirty && amt.invalid || amt.value < 1 || amt.value > accountBalance "> Enter Valid Amount</div>
+<div class="alert alert-warning" *ngIf="depform.dirty && rea.invalid">Enter Valid Reason of 5 char</div>
+
+
+<form (ngSubmit)="!depform.invalid && handleDebitl()" #depform="ngForm">
+
+  <fieldset class="form-group">
+    <label>Withdraw Amount</label>
+    <input type="number" class="form-control" name="Withdraw Amount" #amt="ngModel"
+    [(ngModel)]="withdrawAmount" required="required" minlength="1">
+  </fieldset>
+
+  <fieldset class="form-group">
+    <label>Withdraw Reason</label>
+    <input type="text" class="form-control" name="Withdraw Reason" #rea="ngModel"
+    [(ngModel)]="withdrawReason" require="required"  minlength="5">
+  </fieldset>
+
+  <button type="submit" class="btn btn-success">Withdraw</button>
+  <button (click)=handleDebitCancel() class="btn btn-warning ">Cancel</button>
+</form>
+
+</div>
+

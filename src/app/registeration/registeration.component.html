@@ -1,0 +1,43 @@
+<h3> Welcome to ICIN Digital Bank</h3>
+<h5>Registeration</h5>
+
+<div class="container">
+
+    <div class="alert alert-warning" *ngIf="registerform.dirty && registerform.invalid">Enter valid values</div>
+    <div class="alert alert-warning" *ngIf="registerform.dirty && dobDate.invalid"> Enter Date Of Bith</div>
+    <div class="alert alert-warning" *ngIf="registerform.dirty && name.invalid">Enter atleast 8 Char Of Your Name</div>
+    <div class="alert alert-warning" *ngIf="registerform.dirty && id.invalid">Enter 10 Char National Id</div>
+    <div class="alert alert-warning" *ngIf="registerform.dirty && pwd.invalid"> Enter Min 8 Char Password </div>
+
+    <form (ngSubmit)="!registerform.invalid && handleRegisteration()" #registerform="ngForm">
+
+      <fieldset class="form-group">
+        <label>Name</label>
+        <input type="text" class="form-control" name="Full Name"  #name="ngModel"
+        [(ngModel)]="userprofile.username" require="required"  minlength="8">
+      </fieldset>
+
+      <fieldset class="form-group">
+        <label>National Id</label>
+        <input type="text" class="form-control" name="National Id" #id="ngModel"
+        [(ngModel)]="userprofile.nationalId" require="required"  minlength="10">
+      </fieldset>
+
+      <fieldset class="form-group">
+        <label>Date of Birth</label>
+        <input type="date" class="form-control" name="Date of birth" #dobDate="ngModel"
+          [ngModel]="userprofile.dateOfBirth | date:'yyyy-MM-dd' "
+          (ngModelChange) ="userprofile.dateOfBirth =$event" required="required">
+      </fieldset>
+
+      <fieldset class="form-group">
+        <label>Set a password</label>
+        <input type="password" class="form-control" name="password" #pwd="ngModel"
+        [(ngModel)]="userprofile.password" required="required" minlength="6">
+      </fieldset>
+      <button type="submit" class="btn btn-success">Register</button>
+      <button (click)=handleRegisterationCancel() class="btn btn-warning ">Cancel</button>
+    </form>
+
+
+</div>

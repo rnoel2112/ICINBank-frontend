@@ -3,14 +3,42 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { WelcomeComponent } from './welcome/welcome.component';
+import { LoginComponent } from './login/login.component';
+import { FormsModule } from '@angular/forms';
+import { ErrorComponent } from './error/error.component';
+import { AccountDetailsComponent } from './account-details/account-details.component';
+import { MenuComponent } from './menu/menu.component';
+import { FooterComponent } from './footer/footer.component';
+import { TransferComponent } from './transfer/transfer.component';
+import { DepositComponent } from './deposit/deposit.component';
+import { WithdrawComponent } from './withdraw/withdraw.component';
+import { RegisterationComponent } from './registeration/registeration.component';
+import { LogoutComponent } from './logout/logout.component';
+import { ProfileComponent } from './profile/profile.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    WelcomeComponent,
+    LoginComponent,
+    ErrorComponent,
+    AccountDetailsComponent,
+    MenuComponent,
+    FooterComponent,
+    TransferComponent,
+    DepositComponent,
+    WithdrawComponent,
+    RegisterationComponent,
+    LogoutComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

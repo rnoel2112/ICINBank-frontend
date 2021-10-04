@@ -1,0 +1,13 @@
+<h3>Your profile</h3>
+
+Profile Id: {{userProfile.id}} <br>
+User Name : {{userProfile.username}} <br>
+Date of Bith:{{userProfile.dateOfBirth|date}} <br>
+National Id : {{userProfile.nationalId}} <br>
+Order CheckBook
+<input #checkBookCheckBox
+    id="checkBookCheckBox"
+    type="checkbox"
+
+    [checked]="checkBook"
+    (change)="checkBookRequired(checkBookCheckBox.checked)" />

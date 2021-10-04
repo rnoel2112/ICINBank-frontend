@@ -1,0 +1,43 @@
+
+<div class="container">
+  <h6>
+  Account Number :{{accountNumber}}
+  Balance:{{accountBalance}}
+</h6>
+
+</div>
+
+<div class="container">
+
+  <div class="alert alert-warning" *ngIf="depform.dirty && depform.invalid">Enter valid values</div>
+  <div class="alert alert-warning" *ngIf="depform.dirty && amt.invalid && amt.value < 1 "> Enter Valid Amount</div>
+  <div class="alert alert-warning" *ngIf="depform.dirty && rea.invalid">Enter Valid Reason of 5 char</div>
+
+
+  <form (ngSubmit)="!depform.invalid && handleDeposit()" #depform="ngForm">
+
+    <fieldset class="form-group">
+      <label>Deposit Amount</label>
+      <input type="number" class="form-control" name="Deposit Amount" #amt="ngModel"
+      [(ngModel)]="depositAmount" required="required" minlength="1">
+    </fieldset>
+
+    <fieldset class="form-group">
+      <label>Deposit Reason</label>
+      <input type="text" class="form-control" name="Depsoit Reason" #rea="ngModel"
+      [(ngModel)]="depReason" require="required"  minlength="5">
+    </fieldset>
+
+    <button type="submit" class="btn btn-success">Deposit</button>
+    <button (click)=handleDepositCancel() class="btn btn-warning ">Cancel</button>
+
+  </form>
+
+
+</div>
+
+
+
+
+
+
