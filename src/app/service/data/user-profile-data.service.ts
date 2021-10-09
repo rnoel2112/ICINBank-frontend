@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { API_URL } from 'src/app/app.constants';
 import { UserProfile } from 'src/app/profile/profile.component';
 
 @Injectable({
@@ -10,15 +11,15 @@ export class UserProfileDataService {
   constructor(private http:HttpClient) { }
 
   retriveUserProfile(username:string){
-    console.log (this.http.get(`http://localhost:8080/users/${username}/profiledetail`));
-    return this.http.get <UserProfile> (`http://localhost:8080/users/${username}/profiledetail`);
+    console.log (this.http.get(`${API_URL}/users/${username}/profiledetail`));
+    return this.http.get <UserProfile> (`${API_URL}/users/${username}/profiledetail`);
 
   }
 
 
   registerUserProfile(userprofile:UserProfile){
     console.log ("Register User Profile:" + userprofile);
-    return this.http.post <UserProfile> (`http://localhost:8080/users/${userprofile.username}/profiledetail`, userprofile);
+    return this.http.post <UserProfile> (`${API_URL}/registeruser`, userprofile);
   }
 }
 

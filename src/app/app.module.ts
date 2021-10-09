@@ -16,7 +16,8 @@ import { WithdrawComponent } from './withdraw/withdraw.component';
 import { RegisterationComponent } from './registeration/registeration.component';
 import { LogoutComponent } from './logout/logout.component';
 import { ProfileComponent } from './profile/profile.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpIntercepterAuthService } from './service/http/http-intercepter-auth.service';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,11 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide:HTTP_INTERCEPTORS,useClass:HttpIntercepterAuthService,multi:true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

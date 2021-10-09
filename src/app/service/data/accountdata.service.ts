@@ -1,6 +1,7 @@
-import { HttpClient }  from '@angular/common/http';
+import { HttpClient, HttpHeaders }  from '@angular/common/http';
 import { Injectable }  from '@angular/core';
 import { AccountDetail, AccountDetailsComponent } from 'src/app/account-details/account-details.component';
+import { API_URL } from 'src/app/app.constants';
 
 
 @Injectable({
@@ -20,26 +21,40 @@ export class AccountdataService {
 
 
   retriveAllAccounts(username:string){
-    console.log (this.http.get(`http://localhost:8080/users/${username}/accountdetails`));
-    return this.http.get <AccountDetail[]> (`http://localhost:8080/users/${username}/accountdetails`);
+    console.log (this.http.get(`$API_URL}/users/${username}/accountdetails`));
+    return this.http.get <AccountDetail[]> (`${API_URL}/users/${username}/accountdetails`);
 
   }
 
   retriveAccounts(username:string){
-    console.log (this.http.get(`http://localhost:8080/users/${username}/useraccountdetails`));
-    return this.http.get <AccountDetail[]> (`http://localhost:8080/users/${username}/useraccountdetails`);
+    let basicAuthHeaderString = this.authHeader();
+
+    let header = {
+      headers: new HttpHeaders()
+        .set('Authorization',  `${basicAuthHeaderString}`)
+    }
+
+    console.log("new auth:" + basicAuthHeaderString );
+    console.log("new auth:" + header.headers );
+
+    return this.http.get <AccountDetail[]> (
+      `${API_URL}/users/simplilearn/useraccountdetails`, header
+    );
+
+   // console.log (this.http.get(`http://localhost:8080/users/${username}/useraccountdetails`));
+   // return this.http.get <AccountDetail[]> (`http://localhost:8080/users/${username}/useraccountdetails);
 
   }
 
   retriveAccountInfo(username:string){
-    console.log (this.http.get(`http://localhost:8080/users/${username}/accountinfo`));
-    return this.http.get <AccountDetail> (`http://localhost:8080/users/${username}/accountinfo`);
+    console.log (this.http.get(`${API_URL}/users/${username}/accountinfo`));
+    return this.http.get <AccountDetail> (`${API_URL}/users/${username}/accountinfo`);
 
   }
 
   deposit(deposit:AccountDetail){
 
-    return this.http.post <AccountDetail> (`http://localhost:8080/users/${deposit.username}/deposit`, deposit);
+    return this.http.post <AccountDetail> (`${API_URL}/users/${deposit.username}/deposit`, deposit);
 
   }
 
@@ -47,7 +62,7 @@ export class AccountdataService {
 
     this.accountDetails.push(fromAccount);
     this.accountDetails.push(toAccount);
-    return this.http.post <AccountDetail> (`http://localhost:8080/users/${fromAccount.username}/transfer`, this.accountDetails);
+    return this.http.post <AccountDetail> (`${API_URL}/users/${fromAccount.username}/transfer`, this.accountDetails);
 
   }
 
@@ -62,5 +77,13 @@ export class AccountdataService {
     console.log("Error from Java:"+ error.error.message);
     this.accountMassage=error.error.message;
   };
+
+  authHeader(){
+    let username = 'simplilearn';
+    let password = 'admin';
+    let basicAuthHeaderString = 'Basic '+ window.btoa(username+':'+password);
+    return basicAuthHeaderString;
+
+  }
 
 }
