@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AccountDetailsComponent } from './account-details/account-details.component';
+import { AdminComponent } from './admin/admin.component';
 import { DepositComponent } from './deposit/deposit.component';
 import { ErrorComponent } from './error/error.component';
 import { LoginComponent } from './login/login.component';
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path:'welcome', component:WelcomeComponent},
   { path:'welcome/:name', component:WelcomeComponent,canActivate:[RouteGuardService]},
   { path:'accountdetails', component:AccountDetailsComponent,canActivate:[RouteGuardService]},
+  { path:'admin', component:AdminComponent,canActivate:[RouteGuardService]},
   { path:'**', component:ErrorComponent}
 
 ];

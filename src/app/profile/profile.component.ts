@@ -13,7 +13,8 @@ export class UserProfile {
     public dateOfBirth:Date,
     public password:string,
     public bankingRestriction:boolean,
-    public checkBookRequest:boolean
+    public checkBookRequest:boolean,
+    public isAdmin:boolean,
   )
   {
   }

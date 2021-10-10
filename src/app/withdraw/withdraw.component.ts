@@ -11,8 +11,6 @@ import { HAuthenticationService } from '../service/h-authentication.service';
 })
 export class WithdrawComponent implements OnInit {
 
-
-
   accountDetails:AccountDetail[] =[];
   withdrawAmount:number =0;
   accountNumber:string="";
@@ -26,16 +24,13 @@ export class WithdrawComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.accountdataservice.retriveAccounts(this.hAuth.username).subscribe (
+    console.log("Withdraw Username:"+ this.hAuth.username);
+    this.accountdataservice.accountBalance(this.hAuth.username).subscribe (
       response => {
         console.log (response);
-        this.accountDetails = response;
-
-        for (var def of this.accountDetails){
-          this.debit = <AccountDetail> def;
-          this.accountNumber = this.debit.accountId ;
-          this.accountBalance = this.debit.balance ;
-        }
+        this.debit = response;
+        this.accountNumber = this.debit.accountId ;
+        this.accountBalance = this.debit.balance ;
 
       }
     );

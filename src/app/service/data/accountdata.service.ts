@@ -38,7 +38,7 @@ export class AccountdataService {
     console.log("new auth:" + header.headers );
 
     return this.http.get <AccountDetail[]> (
-      `${API_URL}/users/simplilearn/useraccountdetails`, header
+      `${API_URL}/users/${username}/useraccountdetails`, header
     );
 
    // console.log (this.http.get(`http://localhost:8080/users/${username}/useraccountdetails`));
@@ -50,6 +50,11 @@ export class AccountdataService {
     console.log (this.http.get(`${API_URL}/users/${username}/accountinfo`));
     return this.http.get <AccountDetail> (`${API_URL}/users/${username}/accountinfo`);
 
+  }
+
+  accountBalance(username:string){
+    console.log (this.http.get(`${API_URL}/users/${username}/accountBalance`));
+    return this.http.get <AccountDetail> (`${API_URL}/users/${username}/accountBalance`);
   }
 
   deposit(deposit:AccountDetail){

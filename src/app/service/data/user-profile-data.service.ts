@@ -16,11 +16,19 @@ export class UserProfileDataService {
 
   }
 
-
   registerUserProfile(userprofile:UserProfile){
     console.log ("Register User Profile:" + userprofile);
     return this.http.post <UserProfile> (`${API_URL}/registeruser`, userprofile);
   }
+
+  retriveAllProfile (){
+    console.log ("Register User Profile:" );
+    return this.http.get <UserProfile[]> (
+      `${API_URL}/users/userprofiles`
+    );
+  }
+
+
 }
 
 

@@ -1,0 +1,26 @@
+
+<h4> Users CheckBook and Banking Status: </h4>
+
+<div class="container">
+<table class="table">
+    <thead>
+      <tr>
+
+        <th>User Name </th>
+        <th>National Id</th>
+        <th>Check Book Request</th>
+        <th>Account Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let aprofile of userProfiles">
+        <td>{{aprofile.username}}</td>
+        <td>{{aprofile.nationalId}}</td>
+        <td>{{aprofile.checkBookRequest?'Yes':'No'}}</td>
+        <td> {{aprofile.bankingRestriction ? 'Blocked':'Active'}}</td>
+      </tr>
+    </tbody>
+</table>
+</div>
+
+

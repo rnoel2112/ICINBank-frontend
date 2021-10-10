@@ -9,9 +9,9 @@ import { HAuthenticationService } from '../service/h-authentication.service';
 })
 export class LoginComponent implements OnInit {
 
-  username ="simplilearn";
-  password ='';
-  errorMessage = "Invalid Credential";
+  username:string ="simplilearn";
+  password:string ='';
+  errorMessage:string = "Invalid Credential";
   isValidLogin:boolean=true;
 
   constructor(private router:Router,
@@ -21,14 +21,13 @@ export class LoginComponent implements OnInit {
   }
 
   handleLogin(){
-    console.log("Before LogIn:"+this.hAuth.isUserLoggedIn());
     if (this.hAuth.authenticate(this.username,this.password)){
+      console.log ("Login In Success");
       this.isValidLogin = true;
       this.router.navigate(['welcome',this.username]);
-      console.log("After Login Success:"+this.hAuth.isUserLoggedIn());
-    } else { this.isValidLogin = false;
+    } else {
+      this.isValidLogin = false;
     }
-
   }
 
 }

@@ -16,13 +16,13 @@ export class AuthenticationBean
 export class BasicAuthenticationService {
 
   username ="";
-  password="";
+  password ="";
   errorMessage = "Invalid Credential";
   inValidLogin = true;
 
 
   private messageSource = new BehaviorSubject(this.username);
-  currentMessage = this.messageSource.asObservable();
+  currentMessage        = this.messageSource.asObservable();
 
   constructor(private http:HttpClient) { }
 
@@ -43,6 +43,7 @@ export class BasicAuthenticationService {
         data =>{
           sessionStorage.setItem("authenticatedUser",username);
           sessionStorage.setItem("token",basicAuthHeaderString);
+          //this.username = username;
           return data;
         }
       )

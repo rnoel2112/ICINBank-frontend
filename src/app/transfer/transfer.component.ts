@@ -33,16 +33,13 @@ constructor(private accountdataservice:AccountdataService,
   ngOnInit(): void {
 
     //console.log ("user name in Account Details:" + this.hAuth.username);
-    this.accountdataservice.retriveAccounts(this.hAuth.username).subscribe (
+    this.accountdataservice.accountBalance(this.hAuth.username).subscribe (
       response => {
         console.log (response);
-        this.accountDetails = response;
+        this.fromAccount = response;
+        this.accountNumber = this.fromAccount.accountId ;
+        this.accountBalance = this.fromAccount.balance ;
 
-        for (var def of this.accountDetails){
-          this.fromAccount = <AccountDetail> def;
-          this.accountNumber = this.fromAccount.accountId ;
-          this.accountBalance = this.fromAccount.balance ;
-        }
       }
     );
   }

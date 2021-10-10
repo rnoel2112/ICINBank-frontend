@@ -45,9 +45,13 @@ export class AccountDetailsComponent implements OnInit {
           this.accountNumber = test.accountId ;
           console.log("Account Id ", test.accountId );
         }
-
       }
     );
+
+    
+
+
+
   }
 
 }

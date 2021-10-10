@@ -27,17 +27,12 @@ export class DepositComponent implements OnInit {
   ngOnInit(): void {
 
     console.log ("user name in Account Details:" + this.hAuth.username);
-    this.accountdataservice.retriveAccounts(this.hAuth.username).subscribe (
+    this.accountdataservice.accountBalance(this.hAuth.username).subscribe (
       response => {
-        console.log (response);
-        this.accountDetails = response;
-
-        for (var def of this.accountDetails){
-          this.deposit = <AccountDetail> def;
-          this.accountNumber = this.deposit.accountId ;
-          this.accountBalance = this.deposit.balance ;
-        }
-
+        console.log ("depsot Balance:" + response);
+        this.deposit = response;
+        this.accountNumber = this.deposit.accountId ;
+        this.accountBalance = this.deposit.balance ;
       }
     );
 
