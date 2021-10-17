@@ -32,7 +32,9 @@ export class BasicAuthenticationService {
     let header = {
       headers: new HttpHeaders()
         .set('Authorization',  `${basicAuthHeaderString}`)
+
     }
+
 
     console.log("new auth:" + basicAuthHeaderString );
 
